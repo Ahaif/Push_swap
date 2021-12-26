@@ -7,23 +7,6 @@ The aim of push swap is to sort a stack of numbers using another stack in the le
 
 The stacks can be rotated, have their top two elements swapped, or be pushed onto each other, the full command list is as follows:
 
-Rotating commands
-RA - rotate stack A (send top number on stack to bottom)
-RB - rotate stack B (send top number on stack to bottom)
-RR - rotate both stack A and B at the same time
-RRA - counter-rotate stack A (send bottom number of stack to top)
-RRB - counter-rotate stack B (send bottom number of stack to top)
-RRR - counter-rotate stack A and stack B at the same time
-
-Swapping commands
-SA - swap top two numbers at top of stack A
-SB - swap top two numbers at top of stack B
-
-Pushing commands
-PA - push top element from stack A onto stack B
-PB - push stack B
-
-
 Learnings
 
 the stacks are created as double linked list, so I had to develop a strong grasp of list manipulation to managed both the sorting stacks, and also the linked-list stacks I used to mark the partitions.
