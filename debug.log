@@ -1,0 +1,24 @@
+
+-- after A->B split --
+A.active_len=6  B.active_len=6
+A: [480 686 423 645 764 379 |SENT| ]
+B: [-2 11 265 103 213 177 |SENT| ]
+
+-- after A->B split --
+A.active_len=3  B.active_len=3
+A: [686 645 764 |SENT| ]
+B: [379 423 480 |SENT| -2 11 265 103 213 177 ]
+pre sort_b(<=3): top3 B = [379 423 480] (want DESC)
+post sort_b(<=3): top3 B = [177 423 379] (want DESC)
+
+-- after small B (<=3) pa's --
+A.active_len=0  B.active_len=4
+A: [|SENT| 645 686 764 ]
+B: [177 423 379 480 |SENT| -2 11 265 103 213 ]
+pre sort_b(<=3): top3 B = [-2 11 103] (want DESC)
+post sort_b(<=3): top3 B = [103 11 -2] (want DESC)
+
+-- after small B (<=3) pa's --
+A.active_len=3  B.active_len=3
+A: [213 265 480 |SENT| 379 423 177 645 686 764 ]
+B: [103 11 -2 |SENT| ]

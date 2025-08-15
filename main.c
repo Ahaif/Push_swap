@@ -20,6 +20,7 @@ void	add_head(t_stack *a, char **av)
 	else
 	{
 		a->head->n = ft_atoi(av[1]);
+		a->head->next = NULL;
 		a->head->prv = NULL;
 		a->end = a->head;
 	}

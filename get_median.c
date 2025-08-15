@@ -18,7 +18,7 @@ void	sort_int_tab(int *tab, unsigned int size)
 	int				tmp;
 
 	i = 0;
-	while (i < size)
+	while (i < size -1)
 	{
 		if (tab[i] < tab[i + 1])
 		{
@@ -66,7 +66,9 @@ int	get_true_median(t_stack *a)
 		tmp = tmp->next;
 	}
 	sort_int_tab(arr, i);
-	return (arr[i / 2]);
+	int med = arr[i / 2];
+	free(arr);
+	return (med);
 }
 
 int	get_special_median(t_stack *a)
@@ -74,6 +76,7 @@ int	get_special_median(t_stack *a)
 	t_nlst	*tmp;
 	int		arr[12];
 	int		i;
+	
 
 	tmp = a->head;
 	i = 0;

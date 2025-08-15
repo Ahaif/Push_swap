@@ -21,7 +21,11 @@ int	split_a_to_b(t_stack *a, t_stack *b)
 	if (count > 6)
 		median = get_true_median(a);
 	else if (count > 2 && count <= 6)
+	{
 		median = get_special_median(a);
+	}
+		
+
 	if (median != NO_MED)
 		split_arround_med(a, b, (int)median);
 	else

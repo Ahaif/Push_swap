@@ -3,10 +3,10 @@ EXEC_NAME = push_swap
 
 
 INCLUDE = include
-SRCS = build_stack.c main.c get_median.c solver.c a_functions.c b_functions.c  commands.c 
+SRCS =  ops_wrappers.c build_stack.c main.c get_median.c solver.c a_functions.c b_functions.c  commands.c 
 
 OBJS :=$(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -g -Wall -Wextra -Werror
 
 all: $(NAME)
 
