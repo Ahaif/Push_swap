@@ -13,7 +13,7 @@
 
 void	error_exit(void)
 {
-	write (1, "error\n", 7);
+	write (2, "Error\n", 7);
 	exit(1);
 }
 
@@ -39,22 +39,25 @@ int	check_only_numbers(int ac, char **av)
 	return (1);
 }
 
-void	add_node(char *str, t_nlst **end)
+int	add_node(char *str, t_nlst **end)
 {
 	t_nlst	*tmp;
 	long	num;
 
 	num = ft_atoi(str);
-	if (num > INT_MAX || num < INT_MIN)
-		error_exit();
+	if (num > INT_MAX || num < INT_MIN || num == NO_MED)
+		return (0);
 	if (*end == NULL)
-		return ;
+		return 0 ;
 	tmp = malloc(sizeof(t_nlst));
+	if(!tmp)
+		return (0);
 	tmp->n = (int)num;
 	tmp->next = NULL;
 	(*end)->next = tmp;
 	tmp->prv = *end;
 	*end = tmp;
+	return (1);
 }
 
 int	check_double(t_stack *a)
@@ -79,45 +82,26 @@ int	check_double(t_stack *a)
 	return (1);
 }
 
-void	build_stack(t_stack *a, int ac, char **av)
+int build_stack(t_stack *a, int ac, char **av)
 {
-	int		i;
-	t_nlst	*tmp;
+    t_nlst *tmp;
 
-	i = 1;
-	if (!check_only_numbers(ac, av))
-		error_exit();
-	add_head(a, av);
-	i++;
-	while (i < ac)
-		add_node(av[i++], &a->end);
-	if (!check_double(a))
-	{
-		while (a->head)
-		{
-			tmp = a->head;
-			a->head = a->head->next;
-			free(tmp);
-		}
-		error_exit();
-	}
+    if (!check_only_numbers(ac, av))
+        return 0;
+
+
+    if (!add_head(a, av))      // make add_head return 0 on malloc fail
+        return 0;
+
+    for (int i = 2; i < ac; i++) {
+        if (!add_node(av[i], &a->end)) // make add_node return 0 on malloc/parse fail
+            return 0;
+    }
+
+	if (!check_double(a)) {
+        while (a->head) { tmp = a->head; a->head = a->head->next; free(tmp); }
+        return 0;
+    }
+
+    return 1;
 }
-/*int main(int ac, char **av)
-{
-	t_stack a;
-	t_stack b;
-
-	if (ac > 1 )
-	{
-		build_stack(&a, &b, ac, av);
-	
-		//printf("%d", a.head->n);
-		while(a.head)
-		{
-			
-			printf("%d", a.head->n);
-			a.head = a.head->next;
-		}
-	}
-	return (0);
-}*/

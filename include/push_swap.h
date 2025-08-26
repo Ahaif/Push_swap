@@ -17,7 +17,7 @@
 # define INT_MAX 2147483647
 # define NO_MED 2147483648
 
-# include "libft.h"
+# include "../libft/libft.h"
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -36,9 +36,12 @@ typedef struct s_stack
 	int				top;
 	int				ac;
 }					t_stack;
+void free_split(char **v);
+void exit_error_all(t_stack *a, t_stack *b, char **split, char **argv_fake);
+
 int			check_only_numbers(int ac, char **av);
 void		error_exit(void);
-void		add_node(char *str, t_nlst **end);	
+int		add_node(char *str, t_nlst **end);
 int			check_double(t_stack *a);
 void		solver(t_stack *a, t_stack *b);
 int			sorted(t_stack *a);
@@ -47,7 +50,7 @@ void		sort_int_tab(int *tab, unsigned int size);
 int			get_count(t_stack *stack);
 int			get_true_median(t_stack *a);
 int			get_special_median(t_stack *a);
-void		build_stack(t_stack *a, int ac, char **av);
+int		build_stack(t_stack *a, int ac, char **av);
 void		split_arround_med(t_stack *a, t_stack *b, int median);
 int			deal_higher_nb_a(t_stack *a, int median, int *rewind);
 void		push(t_nlst **from, t_nlst **to, t_nlst **to_end);
@@ -63,7 +66,7 @@ int			deal_lower_nb_b(t_stack *b, int med, int *rewind);
 void		split_from_med_b(t_stack *a, t_stack *b, int med);
 void		three_case_nb_b(t_stack *b);
 void		sort_b(t_stack *b, int count);
-void		add_head(t_stack *a, char **av);
-void		add_partition(t_stack *a, t_stack *b);
+int		add_head(t_stack *a, char **av);
+int		add_partition(t_stack *a, t_stack *b);
 void		free_all(t_stack *a);
 #endif

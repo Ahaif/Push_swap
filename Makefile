@@ -1,27 +1,34 @@
-NAME = libpush_swap.a
-EXEC_NAME = push_swap
+# Makefile
+CC      = cc
+CFLAGS  = -Wall -Wextra -Werror
+CPPFLAGS= -Iinclude
 
+EXEC    = push_swap
+SRCS    = build_stack.c main.c get_median.c solver.c \
+	a_functions.c b_functions.c commands.c
+OBJS    = $(SRCS:.c=.o)
 
-INCLUDE = include
-SRCS = build_stack.c main.c get_median.c solver.c a_functions.c b_functions.c  commands.c 
+LIBFT   = libft/libft.a
 
-OBJS :=$(SRCS:.c=.o)
-CFLAGS = -Wall -Wextra -Werror
+all: $(EXEC)
 
-all: $(NAME)
+$(EXEC): $(OBJS) $(LIBFT)
+	$(CC) $(CFLAGS) $(OBJS) -L libft -lft -o $@
 
-$(NAME): libft $(OBJS) 
-	gcc $(CFLAGS) $(OBJS) -Lft_libft -lft -o ${EXEC_NAME}
+$(LIBFT):
+	$(MAKE) -C libft
 
 %.o: %.c
-	gcc $(CFLAGS) -c $< -o $@ -I$(INCLUDE)
-
-libft:
-	cd ft_libft && make && make clean	
+	$(CC) $(CFLAGS) $(CPPFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJS) 
+	rm -f $(OBJS)
+	$(MAKE) -C libft clean
+
 fclean: clean
-	rm -f $(NAME)
+	rm -f $(EXEC)
+	$(MAKE) -C libft fclean
+
 re: fclean all
+
 .PHONY: all clean fclean re
