@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaifoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abhaifou <abhaifou@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 11:29:37 by ahaifoul          #+#    #+#             */
-/*   Updated: 2021/12/08 16:21:21 by ahaifoul         ###   ########.fr       */
+/*   Created: 2025/09/04 10:18:16 by abhaifou          #+#    #+#             */
+/*   Updated: 2025/09/04 10:18:19 by abhaifou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	split_a_to_b(t_stack *a, t_stack *b)
@@ -22,6 +23,8 @@ int	split_a_to_b(t_stack *a, t_stack *b)
 		median = get_true_median(a);
 	else if (count > 2 && count <= 6)
 		median = get_special_median(a);
+	if (median == FLAG)
+		exit_error_all(a, b, NULL, NULL);
 	if (median != NO_MED)
 		split_arround_med(a, b, (int)median);
 	else
@@ -74,6 +77,8 @@ void	b_to_a(t_stack *a, t_stack *b)
 		median = get_special_median_b(b);
 	if (count > 6)
 		median = get_true_median(b);
+	if (median == FLAG)
+		exit_error_all(a, b, NULL, NULL);
 	if (median != NO_MED)
 		split_from_med_b(a, b, (int)median);
 	else

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_median.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaifoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abhaifou <abhaifou@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/02 12:42:16 by ahaifoul          #+#    #+#             */
-/*   Updated: 2021/12/08 16:03:16 by ahaifoul         ###   ########.fr       */
+/*   Created: 2025/09/04 10:17:39 by abhaifou          #+#    #+#             */
+/*   Updated: 2025/09/04 10:17:43 by abhaifou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ int	get_count(t_stack *stack)
 	return (count);
 }
 
-int	get_true_median(t_stack *a)
+long	get_true_median(t_stack *a)
 {
 	t_nlst	*tmp;
 	int		i;
@@ -57,7 +57,7 @@ int	get_true_median(t_stack *a)
 
 	arr = malloc(sizeof(int) * a->ac);
 	if (!arr)
-		exit(1);
+		return (FLAG);
 	tmp = a->head;
 	i = 0;
 	while (tmp != a->p[a->top])

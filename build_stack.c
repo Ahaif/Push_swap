@@ -3,12 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   build_stack.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaifoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abhaifou <abhaifou@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/01 17:20:34 by ahaifoul          #+#    #+#             */
-/*   Updated: 2021/12/08 15:33:25 by ahaifoul         ###   ########.fr       */
+/*   Created: 2025/09/04 10:16:58 by abhaifou          #+#    #+#             */
+/*   Updated: 2025/09/04 10:17:04 by abhaifou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	error_exit(void)
@@ -48,13 +49,13 @@ int	add_node(char *str, t_nlst **end)
 	if (num > INT_MAX || num < INT_MIN || num == NO_MED)
 		return (0);
 	if (*end == NULL)
-		return 0 ;
+		return (0);
 	tmp = malloc(sizeof(t_nlst));
-	if(!tmp)
+	if (!tmp)
 		return (0);
 	tmp->n = (int)num;
-	tmp->next = NULL;
 	(*end)->next = tmp;
+	tmp->next = NULL;
 	tmp->prv = *end;
 	*end = tmp;
 	return (1);
@@ -82,26 +83,29 @@ int	check_double(t_stack *a)
 	return (1);
 }
 
-int build_stack(t_stack *a, int ac, char **av)
+int	build_stack(t_stack *a, int ac, char **av)
 {
-    t_nlst *tmp;
+	t_nlst	*tmp;
+	int		i;
 
-    if (!check_only_numbers(ac, av))
-        return 0;
-
-
-    if (!add_head(a, av))      // make add_head return 0 on malloc fail
-        return 0;
-
-    for (int i = 2; i < ac; i++) {
-        if (!add_node(av[i], &a->end)) // make add_node return 0 on malloc/parse fail
-            return 0;
-    }
-
-	if (!check_double(a)) {
-        while (a->head) { tmp = a->head; a->head = a->head->next; free(tmp); }
-        return 0;
-    }
-
-    return 1;
+	i = 2;
+	if (!check_only_numbers(ac, av) || !add_head(a, av))
+		return (0);
+	while (i < ac)
+	{
+		if (!add_node(av[i], &a->end))
+			return (0);
+		i++;
+	}
+	if (!check_double(a))
+	{
+		while (a->head)
+		{
+			tmp = a->head;
+			a->head = a->head->next;
+			free(tmp);
+		}
+		return (0);
+	}
+	return (1);
 }

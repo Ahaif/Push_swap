@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   b_functions.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ahaifoul <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: abhaifou <abhaifou@student.hive.fi>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/04 15:27:15 by ahaifoul          #+#    #+#             */
-/*   Updated: 2021/12/07 16:12:34 by ahaifoul         ###   ########.fr       */
+/*   Created: 2025/09/04 10:16:46 by abhaifou          #+#    #+#             */
+/*   Updated: 2025/09/04 10:16:51 by abhaifou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "push_swap.h"
 
 int	get_special_median_b(t_stack *b)
 {
-	t_nlst		*tmp;	
+	t_nlst		*tmp;
 	int			i;
 	int			arr[7];
 
